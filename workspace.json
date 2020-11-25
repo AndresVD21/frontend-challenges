@@ -1,7 +1,140 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "profile-card": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/profile-card",
+      "sourceRoot": "apps/profile-card/src",
+      "prefix": "frontend-challenges",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/profile-card",
+            "index": "apps/profile-card/src/index.html",
+            "main": "apps/profile-card/src/main.ts",
+            "polyfills": "apps/profile-card/src/polyfills.ts",
+            "tsConfig": "apps/profile-card/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/profile-card/src/favicon.ico",
+              "apps/profile-card/src/assets"
+            ],
+            "styles": ["apps/profile-card/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/profile-card/src/environments/environment.ts",
+                  "with": "apps/profile-card/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "profile-card:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "profile-card:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "profile-card:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/profile-card/tsconfig.app.json",
+              "apps/profile-card/tsconfig.spec.json",
+              "apps/profile-card/tsconfig.editor.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/profile-card/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/profile-card/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "profile-card-e2e": {
+      "root": "apps/profile-card-e2e",
+      "sourceRoot": "apps/profile-card-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/profile-card-e2e/cypress.json",
+            "tsConfig": "apps/profile-card-e2e/tsconfig.e2e.json",
+            "devServerTarget": "profile-card:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "profile-card:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/profile-card-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/profile-card-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "profile-card"
 }

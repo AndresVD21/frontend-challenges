@@ -22,5 +22,13 @@
       }
     }
   },
-  "projects": {}
+  "projects": {
+    "profile-card": {
+      "tags": []
+    },
+    "profile-card-e2e": {
+      "tags": [],
+      "implicitDependencies": ["profile-card"]
+    }
+  }
 }
