@@ -122,6 +122,128 @@
           }
         }
       }
+    },
+    "testimonial-grid": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/testimonial-grid",
+      "sourceRoot": "apps/testimonial-grid/src",
+      "prefix": "frontend-challenges",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/testimonial-grid",
+            "index": "apps/testimonial-grid/src/index.html",
+            "main": "apps/testimonial-grid/src/main.ts",
+            "polyfills": "apps/testimonial-grid/src/polyfills.ts",
+            "tsConfig": "apps/testimonial-grid/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/testimonial-grid/src/favicon.ico",
+              "apps/testimonial-grid/src/assets"
+            ],
+            "styles": ["apps/testimonial-grid/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/testimonial-grid/src/environments/environment.ts",
+                  "with": "apps/testimonial-grid/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "testimonial-grid:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "testimonial-grid:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "testimonial-grid:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/testimonial-grid/tsconfig.app.json",
+              "apps/testimonial-grid/tsconfig.spec.json",
+              "apps/testimonial-grid/tsconfig.editor.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/testimonial-grid/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/testimonial-grid/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "testimonial-grid-e2e": {
+      "root": "apps/testimonial-grid-e2e",
+      "sourceRoot": "apps/testimonial-grid-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/testimonial-grid-e2e/cypress.json",
+            "tsConfig": "apps/testimonial-grid-e2e/tsconfig.e2e.json",
+            "devServerTarget": "testimonial-grid:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "testimonial-grid:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/testimonial-grid-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/testimonial-grid-e2e/**/*"]
+          }
+        }
+      }
     }
   },
   "cli": {

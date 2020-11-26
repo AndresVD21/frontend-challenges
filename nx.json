@@ -29,6 +29,13 @@
     "profile-card-e2e": {
       "tags": [],
       "implicitDependencies": ["profile-card"]
+    },
+    "testimonial-grid": {
+      "tags": []
+    },
+    "testimonial-grid-e2e": {
+      "tags": [],
+      "implicitDependencies": ["testimonial-grid"]
     }
   }
 }
