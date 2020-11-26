@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'profile-card';
+  user = {
+    name: 'Victor',
+    lastName: 'Crest',
+    age: 26,
+    location: 'London',
+    followers: '80K',
+    likes: '803K',
+    photos: '1.4K'
+  }
+
+  constructor() {}
 }

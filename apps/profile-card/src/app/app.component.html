@@ -1,5 +1,24 @@
 <main class="main-app">
   <div class="card">
-    
+    <header class="card-header"></header>
+    <div class="card-body">
+      <img class="user-img" src="../assets/images/image-victor.jpg" alt="user-picture">
+      <h1 class="user-info">{{user.name}} {{user.lastName}} <span class="age-span">{{user.age}}</span></h1>
+      <p class="user-location">{{user.location}}</p>
+    </div>
+    <footer class="card-footer">
+      <div class="stat">
+        <p class="amount">{{user.followers}}</p>
+        <p class="stat-title">Followers</p>
+      </div>
+      <div class="stat">
+        <p class="amount">{{user.likes}}</p>
+        <p class="stat-title">Likes</p>
+      </div>
+      <div class="stat">
+        <p class="amount">{{user.photos}}</p>
+        <p class="stat-title">Photos</p>
+      </div>
+    </footer>
   </div>
 </main>
